@@ -1,0 +1,25 @@
+# ============================================================================
+# INDUSTRIAL OBJECT DETECTION - REQUIREMENTS
+# Flask Web Application with YOLOv8
+# ============================================================================
+
+# Web Framework
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# AI & Deep Learning
+ultralytics==8.1.0
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+
+# Computer Vision
+opencv-python==4.9.0.80
+Pillow==10.2.0
+
+# Data Science
+numpy==1.26.3
+pandas==2.1.4
+
+# Utilities
+python-dotenv==1.0.0

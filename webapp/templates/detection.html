@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Detection - Industrial Object Detection{% endblock %}
+
+{% block content %}
+<!-- Detection Section -->
+<section class="detection-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Object Detection</h2>
+            <p>Upload an image to detect industrial objects</p>
+        </div>
+        
+        <div class="detection-container">
+            <!-- Upload Section -->
+            <div class="detection-card">
+                <div class="card-header">
+                    <i class="fas fa-upload"></i>
+                    <h3>Upload Image</h3>
+                </div>
+                
+                <div class="upload-area" id="upload-area">
+                    <input type="file" id="image-input" accept="image/*" hidden>
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h4>Click to upload or drag and drop</h4>
+                        <p>PNG, JPG, JPEG (Max 16MB)</p>
+                    </div>
+                </div>
+                
+                <div class="image-preview" id="image-preview" style="display: none;">
+                    <img id="preview-img" src="" alt="Preview">
+                    <button class="btn-remove" id="remove-image">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Detection Settings -->
+                <div class="detection-settings">
+                    <h4><i class="fas fa-sliders-h"></i> Detection Settings</h4>
+                    
+                    <div class="setting-group">
+                        <label for="confidence">
+                            Confidence Threshold
+                            <span class="setting-value" id="confidence-value">0.25</span>
+                        </label>
+                        <input type="range" id="confidence" min="0.1" max="0.9" step="0.05" value="0.25">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="iou">
+                            IoU Threshold
+                            <span class="setting-value" id="iou-value">0.45</span>
+                        </label>
+                        <input type="range" id="iou" min="0.1" max="0.9" step="0.05" value="0.45">
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary btn-block" id="detect-btn" disabled>
+                    <i class="fas fa-search"></i>
+                    Run Detection
+                </button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="detection-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Detection Results</h3>
+                </div>
+                
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing image...</p>
+                </div>
+                
+                <!-- Empty State -->
+                <div class="empty-state" id="empty-state">
+                    <i class="fas fa-image"></i>
+                    <h4>No results yet</h4>
+                    <p>Upload an image and run detection to see results</p>
+                </div>
+                
+                <!-- Results -->
+                <div class="detection-results" id="results" style="display: none;">
+                    <!-- Result Image -->
+                    <div class="result-image-container">
+                        <img id="result-img" src="" alt="Detection Result">
+                    </div>
+                    
+                    <!-- Detection Info -->
+                    <div class="detection-info">
+                        <div class="info-row">
+                            <span class="info-label">
+                                <i class="fas fa-layer-group"></i>
+                                Objects Detected
+                            </span>
+                            <span class="info-value" id="num-objects">0</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">
+                                <i class="fas fa-clock"></i>
+                                Detection Time
+                            </span>
+                            <span class="info-value" id="detection-time">0s</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Detections List -->
+                    <div class="detections-list">
+                        <h4><i class="fas fa-list"></i> Detected Objects</h4>
+                        <div id="detections-container"></div>
+                    </div>
+                    
+                    <!-- Download Button -->
+                    <button class="btn btn-secondary btn-block" id="download-btn">
+                        <i class="fas fa-download"></i>
+                        Download Result
+                    </button>
+                </div>
+                
+                <!-- Error Message -->
+                <div class="error-message" id="error-message" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p id="error-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <i class="fas fa-microchip"></i>
+                <h3>GPU Accelerated</h3>
+                <p>CUDA-powered inference</p>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-bolt"></i>
+                <h3>Fast Detection</h3>
+                <p>Real-time processing</p>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-chart-line"></i>
+                <h3>High Accuracy</h3>
+                <p>YOLOv8 architecture</p>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-check-circle"></i>
+                <h3>Production Ready</h3>
+                <p>Optimized pipeline</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/detection.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Industrial Object Detection using YOLOv8 and Deep Learning">
+    <meta name="keywords" content="AI, YOLOv8, Object Detection, Deep Learning, Industrial">
+    <meta name="author" content="AI Engineer">
+    
+    <title>{% block title %}Industrial Object Detection - YOLOv8{% endblock %}</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>Industrial AI</span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="{{ url_for('home') }}" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">
+                    <i class="fas fa-home"></i> Home
+                </a></li>
+                <li><a href="{{ url_for('detection') }}" class="nav-link {% if request.endpoint == 'detection' %}active{% endif %}">
+                    <i class="fas fa-search"></i> Detection
+                </a></li>
+                <li><a href="{{ url_for('project') }}" class="nav-link {% if request.endpoint == 'project' %}active{% endif %}">
+                    <i class="fas fa-project-diagram"></i> Project
+                </a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">
+                    <i class="fas fa-info-circle"></i> About
+                </a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}">
+                    <i class="fas fa-envelope"></i> Contact
+                </a></li>
+            </ul>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-brain"></i> Industrial AI</h3>
+                    <p>Advanced object detection powered by YOLOv8 and Deep Learning</p>
+                    <div class="social-links">
+                        <a href="https://github.com/SANTOOOF" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/rahli-youssef-9a7757297/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('detection') }}">Detection</a></li>
+                        <li><a href="{{ url_for('project') }}">Project</a></li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Technologies</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> YOLOv8</li>
+                        <li><i class="fas fa-check"></i> PyTorch</li>
+                        <li><i class="fas fa-check"></i> Flask</li>
+                        <li><i class="fas fa-check"></i> CUDA GPU</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> rahliyoussef43@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Dyar dakhama IMM 219 APP 13 BOUZNIKA</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Industrial AI Detection. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> by YOUSSEF RAHLI</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

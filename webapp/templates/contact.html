@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Industrial Object Detection{% endblock %}
+
+{% block content %}
+<!-- Contact Header -->
+<section class="contact-header">
+    <div class="container">
+        <h1>Get in Touch</h1>
+        <p>Have questions or want to collaborate? Send us a message!</p>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="contact-content">
+    <div class="container">
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <div class="form-card">
+                    <div class="form-header">
+                        <i class="fas fa-envelope"></i>
+                        <h2>Send a Message</h2>
+                    </div>
+                    
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">
+                                <i class="fas fa-user"></i>
+                                Your Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="John Doe" 
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i>
+                                Your Email
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="john@example.com" 
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">
+                                <i class="fas fa-tag"></i>
+                                Subject
+                            </label>
+                            <input 
+                                type="text" 
+                                id="subject" 
+                                name="subject" 
+                                placeholder="Project inquiry" 
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">
+                                <i class="fas fa-comment"></i>
+                                Message
+                            </label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="6" 
+                                placeholder="Write your message here..." 
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div class="success-message" id="success-message" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Message Sent!</h3>
+                        <p>Thank you for reaching out. We'll get back to you soon.</p>
+                    </div>
+                    
+                    <!-- Error Message -->
+                    <div class="error-message" id="form-error" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p id="error-text"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="contact-info-section">
+                <div class="info-card">
+                    <div class="info-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h2>Contact Information</h2>
+                    </div>
+                    
+                    <div class="info-items">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <p>rahliyoussef43@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Location</h4>
+                                <p>AI Research Laboratory</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Response Time</h4>
+                                <p>Within 24-48 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card social-card">
+                    <div class="info-header">
+                        <i class="fas fa-share-alt"></i>
+                        <h2>Connect With Us</h2>
+                    </div>
+                    
+                    <div class="social-links-grid">
+                        <a href="https://github.com/SANTOOOF" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rahli-youssef-9a7757297/" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://youssef-rahli.web.app/" class="social-link">
+                            <i class="fas fa-globe"></i>
+                            <span>Website</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="info-card cta-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Ready to Try?</h3>
+                    <p>Test our industrial object detection system now</p>
+                    <a href="{{ url_for('detection') }}" class="btn btn-secondary">
+                        <i class="fas fa-search"></i>
+                        Start Detection
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+{% endblock %}

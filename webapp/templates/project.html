@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}Project - Industrial Object Detection{% endblock %}
+
+{% block content %}
+<!-- Project Header -->
+<section class="project-header">
+    <div class="container">
+        <h1>Project Overview</h1>
+        <p>Industrial Object Detection using YOLOv8 and Deep Learning</p>
+    </div>
+</section>
+
+<!-- Project Content -->
+<section class="project-content">
+    <div class="container">
+        <!-- Introduction -->
+        <div class="content-card">
+            <div class="card-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <h2>Project Introduction</h2>
+            <p>
+                This project implements an advanced <strong>Industrial Object Detection System</strong> 
+                using the state-of-the-art <strong>YOLOv8 (You Only Look Once version 8)</strong> architecture. 
+                The system is designed to detect and classify various industrial objects in real-time 
+                with high accuracy and speed.
+            </p>
+            <p>
+                The application leverages <strong>Deep Learning</strong> and <strong>Computer Vision</strong> 
+                techniques to provide automated visual inspection capabilities for industrial environments, 
+                improving safety, efficiency, and quality control.
+            </p>
+        </div>
+        
+        <!-- Dataset -->
+        <div class="content-card">
+            <div class="card-icon">
+                <i class="fas fa-database"></i>
+            </div>
+            <h2>Dataset Description</h2>
+            <p>
+                The model is trained on a comprehensive <strong>Industrial Objects Dataset</strong> 
+                that includes various objects commonly found in industrial and manufacturing environments.
+            </p>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-images"></i>
+                    <h4>Training Images</h4>
+                    <p>High-quality annotated images</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-tags"></i>
+                    <h4>Object Classes</h4>
+                    <p>{% if model_info %}{{ model_info.num_classes }}{% else %}Multiple{% endif %} industrial categories</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <h4>Augmentation</h4>
+                    <p>Advanced data augmentation</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-check-double"></i>
+                    <h4>Validation</h4>
+                    <p>Rigorous testing protocol</p>
+                </div>
+            </div>
+            
+            {% if model_info and model_info.classes %}
+            <div class="classes-section">
+                <h3>Detected Object Classes</h3>
+                <div class="classes-grid">
+                    {% for class_name in model_info.classes %}
+                    <div class="class-badge">
+                        <i class="fas fa-cube"></i>
+                        {{ class_name }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Model Architecture -->
+        <div class="content-card">
+            <div class="card-icon">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <h2>Model Architecture: YOLOv8</h2>
+            <p>
+                <strong>YOLOv8</strong> is the latest version of the YOLO (You Only Look Once) family, 
+                offering significant improvements in speed, accuracy, and ease of use.
+            </p>
+            
+            <div class="architecture-features">
+                <div class="feature-row">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Advanced Architecture</h4>
+                        <p>
+                            YOLOv8 uses a <strong>CSPDarknet backbone</strong> with an improved 
+                            <strong>PANet neck</strong> for better feature extraction and fusion.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Single-Stage Detection</h4>
+                        <p>
+                            Unlike two-stage detectors, YOLOv8 performs detection in a single forward pass, 
+                            making it extremely fast for real-time applications.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Anchor-Free Design</h4>
+                        <p>
+                            YOLOv8 adopts an anchor-free approach, simplifying the detection pipeline 
+                            and improving generalization across different object scales.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Advanced Loss Functions</h4>
+                        <p>
+                            Uses <strong>CIoU loss</strong> for bounding box regression and 
+                            <strong>BCE loss</strong> for classification, ensuring accurate predictions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Training Process -->
+        <div class="content-card">
+            <div class="card-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h2>Training Process</h2>
+            <p>
+                The model was trained using a rigorous process to ensure optimal performance:
+            </p>
+            
+            <div class="training-steps">
+                <div class="training-step">
+                    <div class="step-num">1</div>
+                    <h4>Data Preparation</h4>
+                    <ul>
+                        <li>Image preprocessing and normalization</li>
+                        <li>Data augmentation (rotation, scaling, flipping)</li>
+                        <li>Train/Validation/Test split</li>
+                    </ul>
+                </div>
+                
+                <div class="training-step">
+                    <div class="step-num">2</div>
+                    <h4>Model Configuration</h4>
+                    <ul>
+                        <li>YOLOv8s architecture selection</li>
+                        <li>Transfer learning from COCO weights</li>
+                        <li>GPU acceleration with CUDA</li>
+                    </ul>
+                </div>
+                
+                <div class="training-step">
+                    <div class="step-num">3</div>
+                    <h4>Training</h4>
+                    <ul>
+                        <li>100 epochs with early stopping</li>
+                        <li>Batch size: 16 (optimized for RTX 3070)</li>
+                        <li>Mixed precision training (AMP)</li>
+                        <li>Learning rate scheduling</li>
+                    </ul>
+                </div>
+                
+                <div class="training-step">
+                    <div class="step-num">4</div>
+                    <h4>Evaluation</h4>
+                    <ul>
+                        <li>mAP@0.5 and mAP@0.5:0.95 metrics</li>
+                        <li>Precision and recall analysis</li>
+                        <li>Confusion matrix generation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            {% if model_info %}
+            <div class="model-info-box">
+                <h4><i class="fas fa-info-circle"></i> Current Model Information</h4>
+                <div class="model-info-grid">
+                    <div class="info-pair">
+                        <span class="label">Device:</span>
+                        <span class="value">
+                            <i class="fas fa-{% if model_info.device_type == 'GPU' %}microchip{% else %}desktop{% endif %}"></i>
+                            {{ model_info.device }}
+                        </span>
+                    </div>
+                    <div class="info-pair">
+                        <span class="label">Classes:</span>
+                        <span class="value">{{ model_info.num_classes }}</span>
+                    </div>
+                    <div class="info-pair">
+                        <span class="label">Loaded At:</span>
+                        <span class="value">{{ model_info.loaded_at }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Use Cases -->
+        <div class="content-card">
+            <div class="card-icon">
+                <i class="fas fa-industry"></i>
+            </div>
+            <h2>Industrial Use Cases</h2>
+            <p>
+                This object detection system can be applied to various industrial scenarios:
+            </p>
+            
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <i class="fas fa-hard-hat"></i>
+                    <h4>Safety Monitoring</h4>
+                    <p>Detect safety equipment and potential hazards in real-time</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Quality Control</h4>
+                    <p>Automated inspection of products and components</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <i class="fas fa-boxes"></i>
+                    <h4>Inventory Management</h4>
+                    <p>Track and count items in warehouses and storage facilities</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <i class="fas fa-robot"></i>
+                    <h4>Robotics Integration</h4>
+                    <p>Enable robots to identify and manipulate industrial objects</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>Defect Detection</h4>
+                    <p>Identify defects and anomalies in manufacturing processes</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>Production Analytics</h4>
+                    <p>Monitor production lines and generate insights</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technologies -->
+        <div class="content-card">
+            <div class="card-icon">
+                <i class="fas fa-code"></i>
+            </div>
+            <h2>Technologies Used</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fas fa-brain"></i>
+                    <h4>YOLOv8</h4>
+                    <p>Ultralytics YOLOv8</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-python"></i>
+                    <h4>Python</h4>
+                    <p>Backend & AI</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-fire"></i>
+                    <h4>PyTorch</h4>
+                    <p>Deep Learning Framework</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-microchip"></i>
+                    <h4>CUDA</h4>
+                    <p>GPU Acceleration</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-server"></i>
+                    <h4>Flask</h4>
+                    <p>Web Framework</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-image"></i>
+                    <h4>OpenCV</h4>
+                    <p>Computer Vision</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
